@@ -1,7 +1,7 @@
 venv
 *.egg-info
 .eggs
-__pycache__
+__pycache__/
 main.sym
 *.bak
 notes

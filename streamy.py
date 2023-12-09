@@ -42,7 +42,7 @@ def update_value():
  st.session_state.df3 = conn.query(f"SELECT * FROM src_stream.results where win is not null order by id;", ttl="10m")
  st.write(st.session_state.df3)
  st.write('Race bets')
- st.session_state.df4 = conn.query(f"SELECT * FROM src_stream.bets order by race;", ttl="10m")
+ st.session_state.df4 = conn.query(f"SELECT id, race, bettor, alo, sai, win, cal FROM src_stream.bets order by id;", ttl="10m")
  st.write(st.session_state.df4)
 
 # execute
