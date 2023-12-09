@@ -18,7 +18,10 @@ docker build -t streamy .
 # run
 docker run -p 8501:8501 streamy
 ```
-
+or
+```
+docker compose up
+```
 
 Install locally
 -------
