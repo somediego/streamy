@@ -8,13 +8,13 @@ drop table if exists src_stream.bets;
 drop table if exists src_stream.results;
 
 create table if not exists src_stream.bets(
-	id serial primary key,
 	race varchar(32),
 	bettor varchar(32),
 	alo smallint,
 	sai smallint,
 	win varchar(32),
-	cal varchar(32)
+	cal varchar(32),
+	id serial primary key
 );
 insert into src_stream.bets(race,bettor,alo,sai,win,cal) values('some','my',5,7,'ver','nor'),('some','you',12,6,'gul','mor');
 

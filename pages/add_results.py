@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sqlalchemy.sql import text
 
 import streamlit as st
 import time
@@ -27,7 +28,7 @@ with st.form("my_results"):
 
      if st.form_submit_button("Add the results!"):
        with conn.session as session:
-         session.execute("UPDATE src_stream.results set race=:a, alo=:c, sai=:d, win=:e, cal=:f where race=:a;", {"a": my_race, "c": my_alo, "d": my_sai, "e": sentence1, "f": sentence2})
+         session.execute(text(f"UPDATE src_stream.results set race='{my_race}', alo='{my_alo}', sai='{my_sai}', win='{sentence1}', cal='{sentence2}' where race='{my_race}';"))
          session.commit()
 
        time.sleep(1.5)

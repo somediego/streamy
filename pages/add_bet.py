@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from sqlalchemy.sql import text
 
 from globals import var_names
 # get class
@@ -28,7 +29,8 @@ with st.form("my_form"):
 
      if st.form_submit_button("Add the results!"):
        with conn.session as session:
-         session.execute("INSERT INTO src_stream.bets(race, bettor, alo, sai, win, cal) VALUES (:a, :b, :c, :d, :e, :f);", {"a": my_race, "b": my_selector, "c": my_alo, "d": my_sai, "e": sentence1, "f": sentence2})
+#         session.execute("INSERT INTO src_stream.bets VALUES (:a, :b, :c, :d, :e, :f);", {"a": my_race, "b": my_selector, "c": my_alo, "d": my_sai, "e": sentence1, "f": sentence2})
+         session.execute(text(f"INSERT INTO src_stream.bets VALUES ( '{my_race}', '{my_selector}', '{my_alo}', '{my_sai}', '{sentence1}', '{sentence2}')"))
          session.commit()
 
        time.sleep(1.5)
@@ -45,7 +47,7 @@ with st.form("my_deleted_bet"):
 
      if st.form_submit_button("Remove bet!"):
        with conn.session as session:
-         session.execute("DELETE FROM src_stream.bets WHERE id=:a;", {"a": my_bet_number})
+         session.execute(text(f"DELETE FROM src_stream.bets WHERE id='{my_bet_number}';"))
          session.commit()
 
        time.sleep(1.5)
