@@ -20,11 +20,11 @@ import streamlit as st
 import time
 
 st.markdown("""
-	# main
-	left panel to choose different options.
+	# Main
+	Left panel to choose different options.
 	"""
 )
-st.sidebar.markdown('# main')
+st.sidebar.markdown('# Main')
 
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")
@@ -32,16 +32,16 @@ conn = st.connection("postgresql", type="sql")
 @st.cache_data
 def update_value():
  # Perform query.
- st.write('total points per player')
+ st.write('Total points per player')
  st.session_state.df1= conn.query('SELECT * FROM src_stream.total;', ttl="10m")
  st.write(st.session_state.df1)
- st.write('points per player')
+ st.write('Points per player')
  st.session_state.df2 = conn.query('SELECT * FROM src_stream.points;', ttl="10m")
  st.write(st.session_state.df2)
- st.write('race results')
+ st.write('Race results')
  st.session_state.df3 = conn.query(f"SELECT * FROM src_stream.results where win is not null order by id;", ttl="10m")
  st.write(st.session_state.df3)
- st.write('race bets')
+ st.write('Race bets')
  st.session_state.df4 = conn.query(f"SELECT * FROM src_stream.bets order by race;", ttl="10m")
  st.write(st.session_state.df4)
 
@@ -54,7 +54,7 @@ def update_value():
 #st.header(st.session_state.df3)
 #st.header(st.session_state.df4)
 
-if st.button("clear cache_data"):
+if st.button("Clear cache_data"):
 #  update_value.clear()
   st.cache_data.clear()
 
