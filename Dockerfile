@@ -15,7 +15,7 @@ RUN git clone https://github.com/somediego/streamy.git .
 
 RUN pip3 install -r requirements.txt
 
-COPY ../.streamlit ~/.
+COPY .streamlit /root/.streamlit
 
 EXPOSE 8501
 
