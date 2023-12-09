@@ -1,0 +1,11 @@
+venv
+*.egg-info
+.eggs
+__pycache__
+main.sym
+*.bak
+notes
+build
+logs/
+tmp*
+*.log
