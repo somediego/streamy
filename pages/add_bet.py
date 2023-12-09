@@ -23,7 +23,8 @@ with st.form("my_form"):
      my_alo = st.number_input('alo', value=1)
      my_sai = st.number_input('sai', value=1)
      sentence1 = st.selectbox('Your win:', v1.pilots)
-     sentence2 = st.text_input('Your cal:', 'Where\'s the tuna?')
+     sentence2 = st.selectbox('Your cal:', v1.pilots)
+     #sentence2 = st.text_input('Your cal:', 'Where\'s the tuna?')
 
      if st.form_submit_button("Add the results!"):
        with conn.session as session:
