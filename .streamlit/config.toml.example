@@ -1,0 +1,9 @@
+# .streamlit/config.toml
+
+[server]
+sslCertFile = '/etc/letsencrypt/live/lamb.someserver.mp/fullchain.pem'
+sslKeyFile = '/etc/letsencrypt/live/lamb.someserver.mp/priv.key'
+port = 8501
+
+[browser]
+gatherUsageStats = false

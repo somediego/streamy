@@ -17,6 +17,9 @@ cd streamy
 docker build -t streamy .
 # run
 docker run -p 8501:8501 streamy
+# container run
+docker container ls -a
+docker container start <container_name>
 ```
 or
 ```
