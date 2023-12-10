@@ -36,6 +36,24 @@ with st.form("my_results"):
        df = conn.query(f"SELECT * FROM src_stream.results where race='{my_race}';", ttl="10m")
        st.write(df)
 
+with st.form("my_deleted_result"):
+     st.write("""
+	# To remove a result
+	By place.
+	""")
+     my_place = st.selectbox('Pick', v1.places)
+
+     if st.form_submit_button("Remove result!"):
+       with conn.session as session:
+         session.execute(text(f"UPDATE src_stream.results set race='{my_place}', alo= NULL, sai= NULL, win= NULL, cal= NULL where race='{my_place}';"))
+         session.commit()
+
+       time.sleep(1.5)
+       # Perform query.
+       df = conn.query('SELECT * FROM src_stream.results order by id;', ttl="10m")
+       st.write(df)
+
+
 # Perform query.
 #df = conn.query('SELECT * FROM src_stream.results;', ttl="10m")
 #

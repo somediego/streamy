@@ -19,12 +19,9 @@ import numpy as np
 import streamlit as st
 import time
 
-st.markdown("""
-	# Main
-	Left panel to choose different options.
-	"""
-)
-st.sidebar.markdown('# Main')
+from globals import var_names
+
+
 
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")
@@ -54,8 +51,35 @@ def update_value():
 #st.header(st.session_state.df3)
 #st.header(st.session_state.df4)
 
-if st.button("Clear cache_data"):
-#  update_value.clear()
-  st.cache_data.clear()
+st.markdown("""
+	# Main
+	Left panel to choose different options.
+	"""
+)
+st.sidebar.markdown('# Main')
 
-update_value()
+tab1, tab2 = st.tabs(["main", "order"])
+
+with tab1:
+  if st.button("Clear cache_data"):
+  #  update_value.clear()
+    st.cache_data.clear()
+
+  update_value()
+
+with tab2:
+  # get class
+  v1= var_names()
+
+  counter=1;
+  list_=[]
+  for i, x in enumerate(v1.dates):
+    if i % 3 == 0:
+      list_.append([x, v1.players[1].title(), v1.players[2].title(), v1.players[0].title()])
+    elif (i+1) % 3 == 0:
+      list_.append([x, v1.players[2].title(), v1.players[0].title(), v1.players[1].title()])
+    else :
+      list_.append([x, v1.players[0].title(), v1.players[1].title(), v1.players[2].title()])
+
+  st.dataframe(list_)
+

@@ -8,7 +8,6 @@ v1= var_names()
 
 st.markdown("""
 	# Add_bet
-	Left panel to choose different options.
 	"""
 )
 st.sidebar.markdown('# Add_bet')
