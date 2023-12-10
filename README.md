@@ -75,3 +75,30 @@ streamlit run streamy.py
 ```
 
 
+## create systemd-service
+
+```
+sudo su
+# create soft link to profile dir
+ln -s /home/br/.streamlit /home/br/streamy/.streamlit
+```
+
+Create service file `/lib/systemd/system/streamyd.service`
+```
+[Unit]
+Description=streamy-daemon
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/bash /home/br/streamy/scripts/streamyd.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+To run it
+```
+systemctl daemon-reload
+systemctl enable streamyd.service
+systemctl start streamyd.service
+```
