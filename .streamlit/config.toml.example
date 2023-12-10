@@ -2,7 +2,7 @@
 
 [server]
 sslCertFile = '/etc/letsencrypt/live/lamb.someserver.mp/fullchain.pem'
-sslKeyFile = '/etc/letsencrypt/live/lamb.someserver.mp/priv.key'
+sslKeyFile = '/etc/letsencrypt/live/lamb.someserver.mp/privkey.pem'
 port = 8501
 
 [browser]
