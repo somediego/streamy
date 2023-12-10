@@ -1,3 +1,3 @@
 cd /home/br/streamy/
 source venv/bin/activate \
-	&& streamlit run streamy >streamyd.log 2>&1
+	&& streamlit run streamy.py >streamyd.log 2>&1
