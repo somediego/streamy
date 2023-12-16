@@ -19,9 +19,10 @@ import numpy as np
 import streamlit as st
 import time
 
-from globals import var_names
+from globals import var_names, check_password
 
-
+if not check_password():
+    st.stop()
 
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")
