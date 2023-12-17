@@ -88,6 +88,12 @@ class var_names:
 import hmac
 import streamlit as st
 
+import extra_streamlit_components as stx	# for cookies
+#@st.cache_resource
+def get_manager():
+    return stx.CookieManager()
+
+
 def check_password():
     """Returns `True` if the user had a correct password."""
 
@@ -112,9 +118,25 @@ def check_password():
         else:
             st.session_state["password_correct"] = False
 
+    # load cookies
+    cookie_manager = get_manager()
+
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
+        # save dummy cookie stx_ckeck
+        cookie_manager.set("stx_check", True) # Expires in a day by default
+        # show logout button
+        #st.form("Log out", on_click=cookie_manager.delete("stx_check"))
+        # give open access
         return True
+
+    # checking dummy cookie test
+    if cookie_manager.get(cookie="stx_check"):
+        # show logout button
+        #st.form("Log out", on_click=cookie_manager.delete("stx_check"))
+        # give open access
+        return True
+
 
     # Show inputs for username + password.
     login_form()
@@ -125,3 +147,40 @@ def check_password():
 #if not check_password():
 #    st.stop()
 
+##################
+# cookies
+##################
+#import extra_streamlit_components as stx
+#import datetime
+#st.write("# Cookie Manager")
+#
+#@st.cache_resource
+#def get_manager():
+#    return stx.CookieManager()
+#
+#cookie_manager = get_manager()
+#
+#st.subheader("All Cookies:")
+#cookies = cookie_manager.get_all()
+#st.write(cookies)
+#
+#c1, c2, c3 = st.columns(3)
+#
+#with c1:
+#    st.subheader("Get Cookie:")
+#    cookie = st.text_input("Cookie", key="0")
+#    clicked = st.button("Get")
+#    if clicked:
+#        value = cookie_manager.get(cookie=cookie)
+#        st.write(value)
+#with c2:
+#    st.subheader("Set Cookie:")
+#    cookie = st.text_input("Cookie", key="1")
+#    val = st.text_input("Value")
+#    if st.button("Add"):
+#        cookie_manager.set(cookie, val) # Expires in a day by default
+#with c3:
+#    st.subheader("Delete Cookie:")
+#    cookie = st.text_input("Cookie", key="2")
+#    if st.button("Delete"):
+#        cookie_manager.delete(cookie)
