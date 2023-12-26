@@ -93,7 +93,6 @@ import extra_streamlit_components as stx	# for cookies
 def get_manager():
     return stx.CookieManager()
 
-
 def check_password():
     """Returns `True` if the user had a correct password."""
 
@@ -125,18 +124,13 @@ def check_password():
     if st.session_state.get("password_correct", False):
         # save dummy cookie stx_ckeck
         cookie_manager.set("stx_check", True) # Expires in a day by default
-        # show logout button
-        #st.form("Log out", on_click=cookie_manager.delete("stx_check"))
         # give open access
         return True
 
     # checking dummy cookie test
     if cookie_manager.get(cookie="stx_check"):
-        # show logout button
-        #st.form("Log out", on_click=cookie_manager.delete("stx_check"))
         # give open access
         return True
-
 
     # Show inputs for username + password.
     login_form()
