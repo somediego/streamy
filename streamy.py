@@ -8,6 +8,7 @@ import requests
 import pandas as pd
 import numpy as np
 #from sqlalchemy import create_engine
+from sqlalchemy import text
 
 #import clickhouse_connect
 
@@ -26,6 +27,19 @@ if not check_password():
 
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")
+
+# testing duckdb with streamlit
+#import duckdb
+#conn2 = duckdb.connect('../taxi/raw_data/hey.db')
+#st.subheader('Enter your :orange[Duck DB] Query. Table name registered is trip')
+#query = st.text_input('', '')
+#if query == '':
+#    print("no value entered")
+#else:
+#    duck_val = conn2.query(
+#        query
+#    ).df()
+#    st.write(duck_val)
 
 @st.cache_data
 def update_value():
