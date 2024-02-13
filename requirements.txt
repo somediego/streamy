@@ -2,5 +2,5 @@ pandas
 streamlit
 psycopg2-binary
 sqlalchemy
-hmac
+#hmac
 extra_streamlit_components
