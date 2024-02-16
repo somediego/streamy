@@ -20,11 +20,11 @@ from sqlalchemy import text
 import streamlit as st
 import time
 
-from globals import var_names
-#from globals import var_names, check_password
+#from globals import var_names
+from globals import var_names, check_password
 
-#if not check_password():
-#    st.stop()
+if not check_password():
+    st.stop()
 
 # Initialize connection.
 conn = st.connection("postgresql", type="sql")

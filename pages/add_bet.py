@@ -2,11 +2,11 @@ import streamlit as st
 import time
 from sqlalchemy.sql import text
 
-from globals import var_names
-#from globals import var_names, check_password
+#from globals import var_names
+from globals import var_names, check_password
 
-#if not check_password():
-#    st.stop()
+if not check_password():
+    st.stop()
 
 # get class
 v1= var_names()
