@@ -1,14 +1,14 @@
 services:
     postgres:
-      image: postgres:13
+      image: postgres:15
       network_mode: host
       environment:
         POSTGRES_USER: dbt
         POSTGRES_PASSWORD: password1234
         POSTGRES_DB: pepper
       volumes:
-        - ./raw_data:/input_data
-        - ./temp:/temp
+#        - ./raw_data:/input_data
+#        - ./temp:/temp
         - ./warehouse_setup:/docker-entrypoint-initdb.d
       healthcheck:
         test: ["CMD", "pg_isready", "-U", "dbt", "-d", "pepper"]
@@ -17,12 +17,12 @@ services:
       restart: unless-stopped
 #      ports:
 #        - "5432:5432"
-    worker:
-      build: .
-      network_mode: host
-      ports:
-        - "8501:8501"
-      volumes:
-        - ~/.streamlit:~/.streamlit
-#      environment:
-#        FLASK_DEBUG: "true"
+#    worker:
+#      build: .
+#      network_mode: host
+#      ports:
+#        - "8501:8501"
+#      volumes:
+#        - ~/.streamlit:~/.streamlit
+##      environment:
+##        FLASK_DEBUG: "true"
