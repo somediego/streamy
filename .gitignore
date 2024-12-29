@@ -9,3 +9,6 @@ build
 logs/
 tmp*
 *.log
+
+.streamlit/config.toml
+.streamlit/secrets.toml
